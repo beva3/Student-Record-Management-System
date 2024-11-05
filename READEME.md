@@ -1,1 +1,1 @@
-# Student Record Management Systtem
+# Student Record Management System
