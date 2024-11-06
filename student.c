@@ -52,3 +52,9 @@ void displayStudents(const Student students[], int count){
         );
     }
 }
+
+void addStudent(Student students[], int *count){
+    printf("=== Add new Student ===\n");
+    (*count) = (*count) + 2;
+    printf("saving IN %d line\n",*count);
+}

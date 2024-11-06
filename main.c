@@ -9,6 +9,7 @@ int main(){
     loadRecordFromFile(students, &studentCount, "./student.csv");    // load existing students
     printf("Number of students = %d\n",studentCount);
     // displayMenu();
-    displayStudents(students,studentCount); // display);
+    // displayStudents(students,studentCount); // display);
+    addStudent(students,&studentCount);
     return 0;
 }   
