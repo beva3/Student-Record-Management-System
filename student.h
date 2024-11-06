@@ -1,9 +1,9 @@
 #ifndef __STUDENTS__
 #define __STUDENTS__
-
+#include <stdio.h>
 typedef struct Student{
     char name[50];
-    int rollNumber
+    int rollNumber;
     int age;
     float grade; // student's NOTES
 }Student;
