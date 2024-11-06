@@ -8,6 +8,7 @@ int main(){
     printf("Student Management System\n");
     loadRecordFromFile(students, &studentCount, "./student.csv");    // load existing students
     printf("Number of students = %d\n",studentCount);
-    displayMenu();
+    // displayMenu();
+    displayStudents(students,studentCount); // display);
     return 0;
 }   

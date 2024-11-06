@@ -39,3 +39,16 @@ void loadRecordFromFile(Student students[], int *count, const char *fileName){
     fclose(f);  // close the file after reading all records
     printf("Loading successful students from file %s\n",fileName);
 }
+
+void displayStudents(const Student students[], int count){
+    printf("=== Student Records ===\n");
+    printf("Name\tRoll Number\tAge\tGrade\n");
+    for(int i = 0; i < count; i++){
+        printf("%s\t%d\t%d\t%.2f\n",
+            students[i].name,
+            students[i].rollNumber,
+            students[i].age,
+            students[i].grade
+        );
+    }
+}
