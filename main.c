@@ -1,7 +1,7 @@
 #include "./student.h"
 
 int main(){
-    Student students[100];  // Array to store student records
+    Student students[MAX_STUDENTS];  // Array to store student records
     int studentCount = 0;   // Number of students
     int choice;             // User's choice for menu options
 
