@@ -7,7 +7,8 @@ typedef struct Student{
     int age;
     float grade; // student's NOTES
 }Student;
-
+// display menu
+void displayMenu();
 // function to add a new student record 
 void addStudent(Student students[], int *count);
 // function to display all students records
