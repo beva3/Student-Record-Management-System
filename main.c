@@ -10,6 +10,10 @@ int main(){
     printf("Number of students = %d\n",studentCount);
     // displayMenu();
     // displayStudents(students,studentCount); // display);
-    addStudent(students,&studentCount);
+    // addStudent(students,&studentCount);
+    // updateStudent(students,studentCount);
+    // deletStudent(students,&studentCount,34);
+    // searchStudent(students,studentCount,"John Doe");
+    saveRecordsToFile(students, studentCount, "./student.csv"); // save to file
     return 0;
 }   

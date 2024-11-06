@@ -55,6 +55,44 @@ void displayStudents(const Student students[], int count){
 
 void addStudent(Student students[], int *count){
     printf("=== Add new Student ===\n");
-    (*count) = (*count) + 2;
-    printf("saving IN %d line\n",*count);
+    (*count)++;
+    printf("saving  %d th student \n",*count);
+}
+
+void updateStudent(Student students[], int count){
+    printf("=== Update  Student ===\n");
+}
+
+void deletStudent(Student students[], int *count,int rollNumber){
+    printf("=== Delete Student ===\n");
+    printf("rollNumber %d\n",rollNumber);
+}
+
+void searchStudent(const Student students[], int count, const char *name){
+    printf("=== Search Student ===\n");
+    printf("Name %s\n",name);
+}
+
+void saveRecordsToFile(const Student students[], int count, const char *fileName){
+    printf("Saving Student Record ...\n");
+    // FILE *f = fopen(fileName, "w"); // Open the file for writing
+    // if(f == NULL){
+    //     printf("Error opening file: %s\n", fileName);
+    //     return;
+    // }
+
+    // // Write the header line
+    // fprintf(f, "Name,Roll Number,Age,Grade\n");
+
+    // // Write each student record to the file
+    // for(int i = 0; i < count; i++){
+    //     fprintf(f, "%s,%d,%d,%.2f\n",
+    //         students[i].name,
+    //         students[i].rollNumber,
+    //         students[i].age,
+    //         students[i].grade
+    //     );
+    // }
+    // fclose(f);  // close the file after writing all records
+    printf("Saving successful students to file %s\n",fileName);
 }
