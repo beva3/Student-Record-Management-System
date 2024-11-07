@@ -41,7 +41,7 @@ void loadRecordFromFile(Student students[], int *count, const char *fileName){
 }
 
 void displayStudents(const Student students[], int count){
-    printf("=== Student Records ===\n");
+    printf("=== Student Records ===\n\n");
     printf("Name\tRoll Number\tAge\tGrade\n");
     for(int i = 0; i < count; i++){
         printf("%s\t%d\t%d\t%.2f\n",

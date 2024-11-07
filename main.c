@@ -6,14 +6,14 @@ int main(){
     int choice;             // User's choice for menu options
 
     printf("Student Management System\n");
-    loadRecordFromFile(students, &studentCount, "./student.csv");    // load existing students
+    loadRecordFromFile(students, &studentCount, "./dataTest.csv");    // load existing students
     printf("Number of students = %d\n",studentCount);
     // displayMenu();
-    // displayStudents(students,studentCount); // display);
+    displayStudents(students,studentCount); // display);
     // addStudent(students,&studentCount);
     // updateStudent(students,studentCount);
     // deletStudent(students,&studentCount,34);
     // searchStudent(students,studentCount,"John Doe");
-    saveRecordsToFile(students, studentCount, "./student.csv"); // save to file
+    // saveRecordsToFile(students, studentCount, "./student.csv"); // save to file
     return 0;
 }   
