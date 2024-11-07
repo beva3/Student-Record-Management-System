@@ -1,6 +1,7 @@
 #ifndef __STUDENTS__
 #define __STUDENTS__
 #include <stdio.h>
+#include <string.h>
 #define MAX_STUDENTS 5000
 typedef struct Student{
     char name[50];
@@ -19,7 +20,7 @@ void updateStudent(Student students[], int count);
 // function to delete a student record by roll number
 void deletStudent(Student students[], int *count,int rollNumber);
 // function to search for a student record by roll number
-void searchStudent(const Student students[], int count, const char *name);
+void searchStudent(const Student students[],const char *str);
 // function to save a student to a file
 void saveRecordsToFile(const Student students[], int count, const char *fileName);
 // function to load student records from a file

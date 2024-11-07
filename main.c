@@ -13,7 +13,7 @@ int main(){
     // addStudent(students,&studentCount);
     // updateStudent(students,studentCount);
     // deletStudent(students,&studentCount,34);
-    // searchStudent(students,studentCount,"John Doe");
+    searchStudent(students,"John Doe");
     // saveRecordsToFile(students, studentCount, "./student.csv"); // save to file
     return 0;
 }   

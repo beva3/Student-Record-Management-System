@@ -1,4 +1,5 @@
 #include "./student.h"
+#include <string.h>
 
 void displayMenu() {
     printf("=== Student Record Management System ===\n");
@@ -68,9 +69,10 @@ void deletStudent(Student students[], int *count,int rollNumber){
     printf("rollNumber %d\n",rollNumber);
 }
 
-void searchStudent(const Student students[], int count, const char *name){
+void searchStudent(const Student students[], const char *str){
     printf("=== Search Student ===\n");
-    printf("Name %s\n",name);
+    printf("Name %s\n",str);
+    
 }
 
 void saveRecordsToFile(const Student students[], int count, const char *fileName){
