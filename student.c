@@ -1,4 +1,6 @@
 #include "./student.h"
+#include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 
 void displayMenu() {
@@ -69,9 +71,18 @@ void deletStudent(Student students[], int *count,int rollNumber){
     printf("rollNumber %d\n",rollNumber);
 }
 
-void searchStudent(const Student students[], const char *str){
+void searchStudent(char **students,const char *str,int *count){
     printf("=== Search Student ===\n");
-    printf("Name %s\n",str);
+    printf("Name : %s\n",str);
+    
+    for(int index = 0; index < *count; index++) {
+        // printf("%s \n",students[index]);
+        if(strstr(students[index], str) != NULL) {
+            printf(">> string : %s\n",str);
+        }else{
+            printf("Not found\n");
+        }
+    }
     
 }
 
@@ -97,4 +108,51 @@ void saveRecordsToFile(const Student students[], int count, const char *fileName
     // }
     // fclose(f);  // close the file after writing all records
     printf("Saving successful students to file %s\n",fileName);
+}
+
+char **tab_students(char *filename){
+    // Implementation of tab_students function goes here
+    printf("== Tab of students %s ==\n",filename);
+    
+    char **tmp = (char **) malloc(MAX_STUDENTS * sizeof(char*));
+    if(tmp == NULL){
+        printf("Error allocating memory\n");
+        exit(1);
+    }
+    for (int i = 0; i < MAX_STUDENTS; i++){
+        tmp[i] = (char *) malloc(256 * sizeof(char));
+        if(tmp[i] == NULL){
+            printf("Error allocating memory\n");
+            for(int j=0; j<i; j++){
+                free(tmp[j]);
+            }
+            free(tmp);
+            exit(1);
+        }
+    }
+    int index = 1; // index of tab 2D student
+    FILE *f = fopen(filename, "r"); // Open the file for reading
+    if(f == NULL){
+        printf("Error opening file: %s\n", filename);
+        exit(1);
+    }
+
+    char line[256]; // Buffer to hold each line read from the file
+    while (fgets(line, sizeof(line), f)){
+        strcpy(tmp[index], line);
+        // printf("line: %s", *tmp);
+        // (*tmp)++; // no use index of tab
+        index++;
+    }
+
+    return tmp;
+}
+
+void echoTab2d(char **tab_students,int *count){
+    printf("=== Tab of students ===\n\n");
+    printf("Name\tRoll Number\tAge\tGrade\n");
+    for(int i = 0; i < *count; i++){
+        printf("%s",tab_students[i]);
+    }
+    free((void *)tab_students); // free the memory allocated for tab_students
 }
