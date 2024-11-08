@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 
 void displayMenu() {
     printf("=== Student Record Management System ===\n");
@@ -71,19 +72,33 @@ void deletStudent(Student students[], int *count,int rollNumber){
     printf("rollNumber %d\n",rollNumber);
 }
 
+char *inputQuery(){
+    char *input = (char *)malloc(sizeof(char) * 256);
+    printf("input query : ");
+    fgets(input, 256, stdin);
+    input[strcspn(input, "\n")] = '\0'; // Remove newline character from input
+    return input;
+}
+
 void searchStudent(char **students,const char *str,int *count){
     printf("=== Search Student ===\n");
-    printf("Name : %s\n",str);
+
+    bool found = false;
     
     for(int index = 0; index < *count; index++) {
         // printf("%s \n",students[index]);
         if(strstr(students[index], str) != NULL) {
-            printf(">> string : %s\n",str);
-        }else{
-            printf("Not found\n");
+            printf(">> string  %s : %s",
+                str,
+                students[index]
+            );
+            found = true;
         }
+        else found = false;
     }
-    
+    if(!found){
+        printf("Student not found !!!\n");
+    }
 }
 
 void saveRecordsToFile(const Student students[], int count, const char *fileName){

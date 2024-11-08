@@ -30,5 +30,7 @@ void saveRecordsToFile(const Student students[], int count, const char *fileName
 // function to load student records from a file
 void loadRecordFromFile(Student students[], int *count, const char *fileName);
 void echoTab2d(char **tab_students,int *count);
+// imput user
+char *inputQuery();
 
 #endif // !__STUDENTS__
