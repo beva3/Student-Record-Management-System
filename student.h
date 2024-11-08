@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #define MAX_STUDENTS 5000
 typedef struct Student{
     char name[50];
@@ -30,7 +31,9 @@ void saveRecordsToFile(const Student students[], int count, const char *fileName
 // function to load student records from a file
 void loadRecordFromFile(Student students[], int *count, const char *fileName);
 void echoTab2d(char **tab_students,int *count);
-// imput user
+// imput query
 char *inputQuery();
-
+// input new student 
+Student inputNewStudent();
+void printOneStudent(Student *student);
 #endif // !__STUDENTS__

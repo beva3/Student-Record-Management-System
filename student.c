@@ -1,8 +1,5 @@
 #include "./student.h"
-#include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
-#include <stdbool.h>
 
 void displayMenu() {
     printf("=== Student Record Management System ===\n");
@@ -57,6 +54,24 @@ void displayStudents(const Student students[], int count){
     }
 }
 
+Student inputNewStudent(){
+    Student newS;
+
+    printf("== Input new student ==\n");
+    printf("name  "),strcpy(newS.name , inputQuery());
+    printf("rull number "),newS.rollNumber = atoi(inputQuery());
+    printf("age students "),newS.age = atoi(inputQuery());
+    printf("grade students "),newS.grade = atof(inputQuery());    
+
+    return newS;
+}
+
+void printOneStudent(Student *student){
+    printf("Name        : %s\n", student->name);
+    printf("Roll Number : %d\n", student->rollNumber);
+    printf("Age         : %d\n", student->age);
+    printf("Grade       : %.2f\n", student->grade);
+}
 void addStudent(const char *fileName, Student newStudent){
     FILE *f = fopen(fileName, "a"); // Open the file for adding
     if(f == NULL){
@@ -65,8 +80,8 @@ void addStudent(const char *fileName, Student newStudent){
     }
 
     printf("=== Add new Student ===\n");
-    printf("Name: %s\n", newStudent.name);
-
+    printOneStudent(&newStudent);
+    
     // Write the student's data in CSV format: name,rollNumber,age,grade
     fprintf(f, "%s,%d,%d,%.2f\n", 
         newStudent.name, 
@@ -74,6 +89,7 @@ void addStudent(const char *fileName, Student newStudent){
         newStudent.age, 
         newStudent.grade
     );
+
     printf("Student added successfully!\n");
     fclose(f);
 
