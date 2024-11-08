@@ -10,7 +10,7 @@ int main(){
     loadRecordFromFile(students, &studentCount, "./dataTest.csv");    // load existing students
     printf("Number of students = %d\n",studentCount);
     
-    tab_students("./dataTest.csv");
+    // tab_students("./dataTest.csv");
     // displayMenu();
     // displayStudents(students,studentCount); // display);
     // addStudent(students,&studentCount);
@@ -19,6 +19,6 @@ int main(){
     // searchStudent(tab_students("./dataTest.csv"),"John",&studentCount);
     // saveRecordsToFile(students, studentCount, "./student.csv"); // save to file
     echoTab2d(tab_students("./dataTest.csv"), &studentCount);
-    searchStudent(tab_students("./dataTest.csv"),inputQuery(),&studentCount);
+    // searchStudent(tab_students("./dataTest.csv"),inputQuery(),&studentCount);
     return 0;
 }   

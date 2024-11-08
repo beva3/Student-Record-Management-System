@@ -145,7 +145,7 @@ char **tab_students(char *filename){
             exit(1);
         }
     }
-    int index = 1; // index of tab 2D student
+    int index = 0; // index of tab 2D student
     FILE *f = fopen(filename, "r"); // Open the file for reading
     if(f == NULL){
         printf("Error opening file: %s\n", filename);
@@ -153,6 +153,7 @@ char **tab_students(char *filename){
     }
 
     char line[256]; // Buffer to hold each line read from the file
+    fgets(line, sizeof(line), f);   // skeep the first line
     while (fgets(line, sizeof(line), f)){
         strcpy(tmp[index], line);
         // printf("line: %s", *tmp);
@@ -165,9 +166,9 @@ char **tab_students(char *filename){
 
 void echoTab2d(char **tab_students,int *count){
     printf("=== Tab of students ===\n\n");
-    printf("Name\tRoll Number\tAge\tGrade\n");
+    // printf("Name\tRoll Number\tAge\tGrade\n");
     for(int i = 0; i < *count; i++){
-        printf("%s",tab_students[i]);
+        printf("%04d - %s",i+1,tab_students[i]);
     }
     free((void *)tab_students); // free the memory allocated for tab_students
 }
