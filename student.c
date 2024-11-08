@@ -94,7 +94,7 @@ void searchStudent(char **students,const char *str,int *count){
             );
             found = true;
         }
-        else found = false;
+        // found = false; no need
     }
     if(!found){
         printf("Student not found !!!\n");
