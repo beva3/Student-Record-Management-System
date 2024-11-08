@@ -12,6 +12,35 @@ void displayMenu() {
     printf("8. Quit\n");
 }
 
+void echoTab2d(char **tab_students,int *count){
+    printf("=== Tab of students ===\n\n");
+    // printf("Name\tRoll Number\tAge\tGrade\n");
+    for(int i = 0; i < *count; i++){
+        printf("%04d - %s",i+1,tab_students[i]);
+    }
+    free((void *)tab_students); // free the memory allocated for tab_students
+}
+
+void displayStudents(const Student students[], int count){
+    printf("=== Student Records ===\n\n");
+    printf("Name\tRoll Number\tAge\tGrade\n");
+    for(int i = 0; i < count; i++){
+        printf("%s\t%d\t%d\t%.2f\n",
+            students[i].name,
+            students[i].rollNumber,
+            students[i].age,
+            students[i].grade
+        );
+    }
+}
+
+void printOneStudent(Student *student){
+    printf("Name        : %s\n", student->name);
+    printf("Roll Number : %d\n", student->rollNumber);
+    printf("Age         : %d\n", student->age);
+    printf("Grade       : %.2f\n", student->grade);
+}
+
 void loadRecordFromFile(Student students[], int *count, const char *fileName){
     printf("Loading Student Record ...\n");
     FILE *f = fopen(fileName, "r"); // Open the file for reading
@@ -40,37 +69,29 @@ void loadRecordFromFile(Student students[], int *count, const char *fileName){
     printf("Loading successful students from file %s\n",fileName);
 }
 
-void displayStudents(const Student students[], int count){
-    printf("=== Student Records ===\n\n");
-    printf("Name\tRoll Number\tAge\tGrade\n");
-    for(int i = 0; i < count; i++){
-        printf("%s\t%d\t%d\t%.2f\n",
-            students[i].name,
-            students[i].rollNumber,
-            students[i].age,
-            students[i].grade
-        );
-    }
-}
 
 Student inputNewStudent(){
     Student newS;
 
     printf("== Input new student ==\n");
-    printf("name  "),strcpy(newS.name , inputQuery());
-    printf("rull number "),newS.rollNumber = atoi(inputQuery());
-    printf("age students "),newS.age = atoi(inputQuery());
-    printf("grade students "),newS.grade = atof(inputQuery());    
+    printf("name  "),           strcpy(newS.name , inputQuery());
+    printf("rull number "),     newS.rollNumber = atoi(inputQuery());
+    printf("age students "),    newS.age        = atoi(inputQuery());
+    printf("grade students "),  newS.grade      = atof(inputQuery());    
 
     return newS;
 }
 
-void printOneStudent(Student *student){
-    printf("Name        : %s\n", student->name);
-    printf("Roll Number : %d\n", student->rollNumber);
-    printf("Age         : %d\n", student->age);
-    printf("Grade       : %.2f\n", student->grade);
+char *inputQuery(){
+    char *input = (char *)malloc(sizeof(char) * 256);
+    
+    printf("input query : ");
+    fgets(input, 256, stdin);
+    input[strcspn(input, "\n")] = '\0'; // Remove newline character from input
+    
+    return input;
 }
+
 void addStudent(const char *fileName, Student newStudent){
     FILE *f = fopen(fileName, "a"); // Open the file for adding
     if(f == NULL){
@@ -91,25 +112,51 @@ void addStudent(const char *fileName, Student newStudent){
 
     printf("Student added successfully!\n");
     fclose(f);
-
     // befor to print a tab we need to update our data
 }
 
-void updateStudent(Student students[], int count){
-    printf("=== Update  Student ===\n");
+void initialize_2D(char ***tab_2D,int rows, int colums){
+    *tab_2D = (char **) malloc(rows * sizeof(char*));
+    if(*tab_2D == NULL){
+        printf("Error allocating memory\n");
+        exit(1);
+    }
+    for (int i = 0; i < rows; i++){
+        (*tab_2D)[i] = (char *) malloc(colums * sizeof(char));
+        if((*tab_2D)[i] == NULL){
+            printf("Error allocating memory\n");
+            for(int j=0; j<i; j++){
+                free((*tab_2D)[j]);
+            }
+            free(*tab_2D);
+            exit(1);
+        }
+    }
 }
 
-void deletStudent(Student students[], int *count,int rollNumber){
-    printf("=== Delete Student ===\n");
-    printf("rollNumber %d\n",rollNumber);
-}
+char **tab_students(char *filename){
+    // Implementation of tab_students function goes here
+    printf("== Tab of students %s ==\n",filename);
+    
+    char **tmp = NULL;
+    initialize_2D(&tmp, MAX_STUDENTS, 256);
+    int index = 0; // index of tab 2D student
+    FILE *f = fopen(filename, "r"); // Open the file for reading
+    if(f == NULL){
+        printf("Error opening file: %s\n", filename);
+        exit(1);
+    }
 
-char *inputQuery(){
-    char *input = (char *)malloc(sizeof(char) * 256);
-    printf("input query : ");
-    fgets(input, 256, stdin);
-    input[strcspn(input, "\n")] = '\0'; // Remove newline character from input
-    return input;
+    char line[256]; // Buffer to hold each line read from the file
+    fgets(line, sizeof(line), f);   // skeep the first line
+    while (fgets(line, sizeof(line), f)){
+        strcpy(tmp[index], line);
+        // printf("line: %s", *tmp);
+        // (*tmp)++; // no use index of tab
+        index++;
+    }
+    fclose(f);  // close the file after reading all records
+    return tmp;
 }
 
 void searchStudent(char **students,const char *str,int *count){
@@ -128,9 +175,17 @@ void searchStudent(char **students,const char *str,int *count){
         }
         // found = false; no need
     }
-    if(!found){
-        printf("Student not found !!!\n");
-    }
+
+    if(!found) printf("Student not found !!!\n");
+}
+
+void updateStudent(Student students[], int count){
+    printf("=== Update  Student ===\n");
+}
+
+void deletStudent(Student students[], int *count,int rollNumber){
+    printf("=== Delete Student ===\n");
+    printf("rollNumber %d\n",rollNumber);
 }
 
 void saveRecordsToFile(const Student students[], int count, const char *fileName){
@@ -155,52 +210,4 @@ void saveRecordsToFile(const Student students[], int count, const char *fileName
     // }
     // fclose(f);  // close the file after writing all records
     printf("Saving successful students to file %s\n",fileName);
-}
-
-char **tab_students(char *filename){
-    // Implementation of tab_students function goes here
-    printf("== Tab of students %s ==\n",filename);
-    
-    char **tmp = (char **) malloc(MAX_STUDENTS * sizeof(char*));
-    if(tmp == NULL){
-        printf("Error allocating memory\n");
-        exit(1);
-    }
-    for (int i = 0; i < MAX_STUDENTS; i++){
-        tmp[i] = (char *) malloc(256 * sizeof(char));
-        if(tmp[i] == NULL){
-            printf("Error allocating memory\n");
-            for(int j=0; j<i; j++){
-                free(tmp[j]);
-            }
-            free(tmp);
-            exit(1);
-        }
-    }
-    int index = 0; // index of tab 2D student
-    FILE *f = fopen(filename, "r"); // Open the file for reading
-    if(f == NULL){
-        printf("Error opening file: %s\n", filename);
-        exit(1);
-    }
-
-    char line[256]; // Buffer to hold each line read from the file
-    fgets(line, sizeof(line), f);   // skeep the first line
-    while (fgets(line, sizeof(line), f)){
-        strcpy(tmp[index], line);
-        // printf("line: %s", *tmp);
-        // (*tmp)++; // no use index of tab
-        index++;
-    }
-    fclose(f);  // close the file after reading all records
-    return tmp;
-}
-
-void echoTab2d(char **tab_students,int *count){
-    printf("=== Tab of students ===\n\n");
-    // printf("Name\tRoll Number\tAge\tGrade\n");
-    for(int i = 0; i < *count; i++){
-        printf("%04d - %s",i+1,tab_students[i]);
-    }
-    free((void *)tab_students); // free the memory allocated for tab_students
 }

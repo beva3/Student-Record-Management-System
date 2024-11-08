@@ -36,4 +36,5 @@ char *inputQuery();
 // input new student 
 Student inputNewStudent();
 void printOneStudent(Student *student);
+void initialize_2D(char ***tab_2D,int rows, int colums);
 #endif // !__STUDENTS__

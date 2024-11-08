@@ -15,12 +15,12 @@ int main(){
     // displayMenu();
     // displayStudents(students,studentCount); // display);
     // addStudent("./dataTest.csv",(Student){"new Bienvenu",4,12,23.2});
-    addStudent("./dataTest.csv",inputNewStudent());
+    // addStudent("./dataTest.csv",inputNewStudent());
     // updateStudent(students,studentCount);
     // deletStudent(students,&studentCount,34);
     // searchStudent(tab_students("./dataTest.csv"),"John",&studentCount);
     // saveRecordsToFile(students, studentCount, "./student.csv"); // save to file
-    // echoTab2d(tab_students("./dataTest.csv"), &studentCount);
+    echoTab2d(tab_students("./dataTest.csv"), &studentCount);
     // searchStudent(tab_students("./dataTest.csv"),inputQuery(),&studentCount);
     return 0;
 }   
