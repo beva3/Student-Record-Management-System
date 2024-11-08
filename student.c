@@ -1,5 +1,4 @@
 #include "./student.h"
-#include <stdio.h>
 
 void displayMenu() {
     printf("=== Student Record Management System ===\n");
