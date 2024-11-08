@@ -115,6 +115,7 @@ void addStudent(const char *fileName, Student newStudent){
     // befor to print a tab we need to update our data
 }
 
+
 void initialize_2D(char ***tab_2D,int rows, int colums){
     *tab_2D = (char **) malloc(rows * sizeof(char*));
     if(*tab_2D == NULL){
