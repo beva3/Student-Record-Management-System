@@ -16,7 +16,7 @@ char **tab_students(char *filename);
 // display menu
 void displayMenu();
 // function to add a new student record 
-void addStudent(Student students[], int *count);
+void addStudent(const char *fileName, Student newStudent);
 // function to display all students records
 void displayStudents(const Student students[], int count);
 // function to update existing students records

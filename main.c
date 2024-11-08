@@ -3,6 +3,7 @@
 
 int main(){
     Student students[MAX_STUDENTS];  // Array to store student records
+    // Student newStudent = {"new student",1,2,3.2};
     int studentCount = 0;   // Number of students
     int choice = 0;             // User's choice for menu options
 
@@ -13,7 +14,7 @@ int main(){
     // tab_students("./dataTest.csv");
     // displayMenu();
     // displayStudents(students,studentCount); // display);
-    // addStudent(students,&studentCount);
+    // addStudent("./dataTest.csv",(Student){"new Bienvenu",4,12,23.2});
     // updateStudent(students,studentCount);
     // deletStudent(students,&studentCount,34);
     // searchStudent(tab_students("./dataTest.csv"),"John",&studentCount);

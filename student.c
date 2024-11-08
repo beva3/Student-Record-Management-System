@@ -57,10 +57,27 @@ void displayStudents(const Student students[], int count){
     }
 }
 
-void addStudent(Student students[], int *count){
+void addStudent(const char *fileName, Student newStudent){
+    FILE *f = fopen(fileName, "a"); // Open the file for adding
+    if(f == NULL){
+        printf("Error opening file: %s\n", fileName);
+        exit(1);
+    }
+
     printf("=== Add new Student ===\n");
-    (*count)++;
-    printf("saving  %d th student \n",*count);
+    printf("Name: %s\n", newStudent.name);
+
+    // Write the student's data in CSV format: name,rollNumber,age,grade
+    fprintf(f, "%s,%d,%d,%.2f\n", 
+        newStudent.name, 
+        newStudent.rollNumber, 
+        newStudent.age, 
+        newStudent.grade
+    );
+    printf("Student added successfully!\n");
+    fclose(f);
+
+    // befor to print a tab we need to update our data
 }
 
 void updateStudent(Student students[], int count){
@@ -160,7 +177,7 @@ char **tab_students(char *filename){
         // (*tmp)++; // no use index of tab
         index++;
     }
-
+    fclose(f);  // close the file after reading all records
     return tmp;
 }
 
