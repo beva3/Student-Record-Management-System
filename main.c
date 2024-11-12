@@ -3,7 +3,8 @@
 
 int main(){
     Student students[MAX_STUDENTS];  // Array to store student records
-    // Student newStudent = {"new student",1,2,3.2};
+    char **tab_s = tab_students("./dataTest.csv");
+    Student new_s = {"beva",12,2,1.};
     int studentCount = 0;   // Number of students
     int choice = 0;             // User's choice for menu options
 
@@ -20,7 +21,8 @@ int main(){
     // deletStudent(students,&studentCount,34);
     // searchStudent(tab_students("./dataTest.csv"),"John",&studentCount);
     // saveRecordsToFile(students, studentCount, "./student.csv"); // save to file
-    echoTab2d(tab_students("./dataTest.csv"), &studentCount);
+    echoTab2d(tab_s, &studentCount);
+    appendStudent(&tab_s,&new_s);
     // searchStudent(tab_students("./dataTest.csv"),inputQuery(),&studentCount);
     return 0;
 }   

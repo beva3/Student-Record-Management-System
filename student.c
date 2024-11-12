@@ -1,4 +1,6 @@
 #include "./student.h"
+#include <stdio.h>
+#include <string.h>
 
 void displayMenu() {
     printf("=== Student Record Management System ===\n");
@@ -115,6 +117,9 @@ void addStudent(const char *fileName, Student newStudent){
     // befor to print a tab we need to update our data
 }
 
+void appendStudent(char ***tab_students,Student *newStudent){
+    printf("== Appending to tab student ==\n");
+}
 
 void initialize_2D(char ***tab_2D,int rows, int colums){
     *tab_2D = (char **) malloc(rows * sizeof(char*));
